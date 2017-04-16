@@ -7,7 +7,7 @@
 			<el-form :inline="true">
 				<el-form-item>
 					<el-select v-model="provinceCode" @change="resetContry">
-						<el-option v-for="item in citys.cities" 
+						<el-option v-for="item in citys" 
 							:label="item.name" 
 							:value="item.id" 
 							:key="item.id">{{item.name}}</el-option>
@@ -45,27 +45,23 @@
 		},
 		data() {
 			return {
-				citys: this.city,
 				finalArea: '',
 				provinceCode: '',
 				cityCode: '',
 				countyCode: ''
 			}
 		},
-		created() {
-			this.citys.cities.unshift({id: '', name: '全国'})
-		},
 		methods: {
 			resetContry() {
 				this.countyCode = ''
 			},
 			queryCity(provinceId) {
-				for (let i = 0; i < this.citys.cities.length; i++) {
-					if (!this.city.cities[i].id) {
+				for (let i = 0; i < this.citys.length; i++) {
+					if (!this.citys[i].id) {
 						continue	// 跳过id为空的时候
 					}
-					if (this.citys.cities[i].id === provinceId) {
-						return this.citys.cities[i].cities
+					if (this.citys[i].id === provinceId) {
+						return this.citys[i].cities
 					}
 				}
 				return []
@@ -92,6 +88,14 @@
 			}
 		},
 		computed: {
+			citys() {
+				// slice()是浅拷贝，在这里没什么卵用
+				let citys = this.city.cities.slice()
+				if (citys[0].id !== '') {
+					citys.unshift({id: '', name: '全国'})
+				}
+				return citys
+			},
 			cities() {
 				let cities = this.queryCity(this.provinceCode).slice()
 				let obj = {

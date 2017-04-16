@@ -52,6 +52,7 @@
 		<div class="m-block">
 			<div class="m-tit">
 				<h3>条纹背景</h3>
+				<h5>一、水平条纹</h5>
 				<p>1、原理：如果多个色标具有相同的位置，它们会产生一个无限小的过度区域，过度的起止色分别是第一个和最后一个指定值，从效果上看颜色会在那个位置突然变化，而不是一个平滑的渐变过程。</p>
 			</div>
 			<pre>background: linear-gradient(#fb3 20%, #58a 80%);</pre>
@@ -65,10 +66,48 @@
 			</div>
 			<div class="m-cont cont-fringe2"></div>
 			<div class="m-tit">
-				<p>5、多层水平条纹: 三色效果，中间的颜色需要承上启下</p>
+				<p>5、多层水平条纹: 三色效果，需要四个色标（中间的颜色需要承上启下）</p>
 				<pre>background: linear-gradient(#fb3 30%, #58a 0, #58a 70%, yellowgreen 0);</pre>	
 			</div>
 			<div class="m-cont cont-fringe-more"></div>
+		</div>
+		<div class="m-block">
+			<div class="m-tit">
+				<h5>二、垂直条纹</h5>
+				<p>1、与水平条纹的差别在于指定渐变的方向改为 to right，水平条纹中默认 为to bottom</p>
+				<p>2、将background-size的值颠倒</p>
+				<pre>
+background: linear-gradient(to right /* 或90deg */, #fb3 50%, #58a 0);
+background-size: 30px 100%;</pre>
+			</div>
+			<div class="m-cont cont-fringe-vertical"></div>
+		</div>
+		<div class="m-block">
+			<div class="m-tit">
+				<h5>三、斜向条纹</h5>
+				<p>1、重复线性渐变，色标示无限循环重复的，直到填满整个背景</p>
+				<pre>background: repeating-linear-gradient(45deg, #fb3,#58a 30px);</pre>	
+			</div>
+			<div class="m-cont cont-repeat-fringe"></div>
+			<p>2、创建双色条纹时，都需要用到四个色标，最好用前面的方法实现垂直或水平条纹，</p>
+			<p>3、现在是在渐变的色标中指定长度，而不是原来的background-size</p>
+			<pre>background: repeating-linear-gradient(45deg, #fb3, #fb3 15px, #58a 0, #58a 30px);</pre>
+			<div class="m-cont cont-repeat-fringe-1"></div>
+			<p>4、角度可随意更改</p>
+			<pre>background: repeating-linear-gradient(60deg, #fb3, #fb3 15px, #58a 0, #58a 30px);</pre>
+			<div class="m-cont cont-repeat-fringe-2"></div>
+		</div>
+		<div class="m-block">
+			<div class="m-tit">
+				<h3></h3>
+			</div>
+			<div class="m-cont"></div>
+		</div>
+		<div class="m-block">
+			<div class="m-tit">
+				<h3></h3>
+			</div>
+			<div class="m-cont"></div>
 		</div>
 	</div>
 </template>
@@ -153,6 +192,19 @@
 		.cont-fringe-more{
 			background: linear-gradient(#fb3 30%, #58a 0, #58a 70%, yellowgreen 0);
 			background-size: 100% 60px;
+		}
+		.cont-fringe-vertical{
+			background: linear-gradient(to right, #fb3 50%, #58a 0);
+			background-size: 30px 100%;
+		}
+		.cont-repeat-fringe{
+			background: repeating-linear-gradient(45deg, #fb3,#58a 30px);
+		}
+		.cont-repeat-fringe-1{
+			background: repeating-linear-gradient(45deg, #fb3, #fb3 15px, #58a 0, #58a 30px);
+		}
+		.cont-repeat-fringe-2{
+			background: repeating-linear-gradient(60deg, #fb3, #fb3 15px, #58a 0, #58a 30px);
 		}
 	}
 </style>
