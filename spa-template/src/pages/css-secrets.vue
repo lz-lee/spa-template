@@ -52,23 +52,62 @@
 		<div class="m-block">
 			<div class="m-tit">
 				<h3>条纹背景</h3>
+				<h5>一、水平条纹</h5>
 				<p>1、原理：如果多个色标具有相同的位置，它们会产生一个无限小的过度区域，过度的起止色分别是第一个和最后一个指定值，从效果上看颜色会在那个位置突然变化，而不是一个平滑的渐变过程。</p>
 			</div>
 			<pre>background: linear-gradient(#fb3 20%, #58a 80%);</pre>
-			<div class="m-cont cont-fringe1"></div>
+			<div class="m-cont cont-stripes1"></div>
 			<pre>background: linear-gradient(#fb3 50%, #58a 50%);</pre>
-			<div class="m-cont cont-fringe"></div>
+			<div class="m-cont cont-stripes"></div>
 			<div class="m-tit">
 				<p>2、可以通过背景尺寸来调整尺寸，background-size: 100% 30p;(第一个值设置宽度，第二个值设置高度。)注意：背景在默认情况下是重复平铺的。</p>
 				<p>3、创建不等高的条纹，只需要调整色标的位置值</p>
 				<p>4、如果某个色标的位置值比在它之前的所有的值都要小，则该位置值会取它之前的所有位置值中的最大值。</p>
 			</div>
-			<div class="m-cont cont-fringe2"></div>
+			<div class="m-cont cont-stripes2"></div>
 			<div class="m-tit">
-				<p>5、多层水平条纹: 三色效果，中间的颜色需要承上启下</p>
+				<p>5、多层水平条纹: 三色效果，需要四个色标（中间的颜色需要承上启下）</p>
 				<pre>background: linear-gradient(#fb3 30%, #58a 0, #58a 70%, yellowgreen 0);</pre>	
 			</div>
-			<div class="m-cont cont-fringe-more"></div>
+			<div class="m-cont cont-stripes-more"></div>
+		</div>
+		<div class="m-block">
+			<div class="m-tit">
+				<h5>二、垂直条纹</h5>
+				<p>1、与水平条纹的差别在于指定渐变的方向改为 to right，水平条纹中默认 为to bottom</p>
+				<p>2、将background-size的值颠倒</p>
+				<pre>
+background: linear-gradient(to right /* 或90deg */, #fb3 50%, #58a 0);
+background-size: 30px 100%;</pre>
+			</div>
+			<div class="m-cont cont-stripes-vertical"></div>
+		</div>
+		<div class="m-block">
+			<div class="m-tit">
+				<h5>三、斜向条纹</h5>
+				<p>1、重复线性渐变，色标示无限循环重复的，直到填满整个背景</p>
+				<pre>background: repeating-linear-gradient(45deg, #fb3,#58a 30px);</pre>	
+			</div>
+			<div class="m-cont cont-repeat-stripes"></div>
+			<p>2、创建双色条纹时，都需要用到四个色标，最好用前面的方法实现垂直或水平条纹，</p>
+			<p>3、现在是在渐变的色标中指定长度，而不是原来的background-size</p>
+			<pre>background: repeating-linear-gradient(45deg, #fb3, #fb3 15px, #58a 0, #58a 30px);</pre>
+			<div class="m-cont cont-repeat-stripes-1"></div>
+			<p>4、角度可随意更改</p>
+			<pre>background: repeating-linear-gradient(60deg, #fb3, #fb3 15px, #58a 0, #58a 30px);</pre>
+			<div class="m-cont cont-repeat-stripes-2"></div>
+		</div>
+		<div class="m-block">
+			<div class="m-tit">
+				<h3></h3>
+			</div>
+			<div class="m-cont"></div>
+		</div>
+		<div class="m-block">
+			<div class="m-tit">
+				<h3></h3>
+			</div>
+			<div class="m-cont"></div>
 		</div>
 	</div>
 </template>
@@ -139,20 +178,33 @@
 			box-shadow: 0 0 0 .3em #655;
 			outline:.6em solid #655;
 		}
-		.cont-fringe1{
+		.cont-stripes1{
 			background: linear-gradient(#fb3 20%, #58a 80%);
 			margin-bottom: 30px;
 		}
-		.cont-fringe{
+		.cont-stripes{
 			background: linear-gradient(#fb3 50%, #58a 50%);
 		}
-		.cont-fringe2{
+		.cont-stripes2{
 			background: linear-gradient(#fb3 30%, #58a 30%);
 			background-size: 100% 30px;
 		}
-		.cont-fringe-more{
+		.cont-stripes-more{
 			background: linear-gradient(#fb3 30%, #58a 0, #58a 70%, yellowgreen 0);
 			background-size: 100% 60px;
+		}
+		.cont-stripes-vertical{
+			background: linear-gradient(to right, #fb3 50%, #58a 0);
+			background-size: 30px 100%;
+		}
+		.cont-repeat-stripes{
+			background: repeating-linear-gradient(45deg, #fb3,#58a 30px);
+		}
+		.cont-repeat-stripes-1{
+			background: repeating-linear-gradient(45deg, #fb3, #fb3 15px, #58a 0, #58a 30px);
+		}
+		.cont-repeat-stripes-2{
+			background: repeating-linear-gradient(60deg, #fb3, #fb3 15px, #58a 0, #58a 30px);
 		}
 	}
 </style>
