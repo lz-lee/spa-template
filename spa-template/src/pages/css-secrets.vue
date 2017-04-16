@@ -109,6 +109,44 @@ background-size: 30px 100%;</pre>
 			</div>
 			<div class="m-cont"></div>
 		</div>
+		<div class="m-block">
+			<div class="m-tit">
+				<h5>二、垂直条纹</h5>
+				<p>1、与水平条纹的差别在于指定渐变的方向改为 to right，水平条纹中默认 为to bottom</p>
+				<p>2、将background-size的值颠倒</p>
+				<pre>
+background: linear-gradient(to right /* 或90deg */, #fb3 50%, #58a 0);
+background-size: 30px 100%;</pre>
+			</div>
+			<div class="m-cont cont-fringe-vertical"></div>
+		</div>
+		<div class="m-block">
+			<div class="m-tit">
+				<h5>三、斜向条纹</h5>
+				<p>1、重复线性渐变，色标示无限循环重复的，直到填满整个背景</p>
+				<pre>background: repeating-linear-gradient(45deg, #fb3,#58a 30px);</pre>	
+			</div>
+			<div class="m-cont cont-repeat-fringe"></div>
+			<p>2、创建双色条纹时，都需要用到四个色标，最好用前面的方法实现垂直或水平条纹，</p>
+			<p>3、现在是在渐变的色标中指定长度，而不是原来的background-size</p>
+			<pre>background: repeating-linear-gradient(45deg, #fb3, #fb3 15px, #58a 0, #58a 30px);</pre>
+			<div class="m-cont cont-repeat-fringe-1"></div>
+			<p>4、角度可随意更改</p>
+			<pre>background: repeating-linear-gradient(60deg, #fb3, #fb3 15px, #58a 0, #58a 30px);</pre>
+			<div class="m-cont cont-repeat-fringe-2"></div>
+		</div>
+		<div class="m-block">
+			<div class="m-tit">
+				<h3></h3>
+			</div>
+			<div class="m-cont"></div>
+		</div>
+		<div class="m-block">
+			<div class="m-tit">
+				<h3></h3>
+			</div>
+			<div class="m-cont"></div>
+		</div>
 	</div>
 </template>
 <script>
@@ -204,7 +242,5 @@ background-size: 30px 100%;</pre>
 			background: repeating-linear-gradient(45deg, #fb3, #fb3 15px, #58a 0, #58a 30px);
 		}
 		.cont-repeat-stripes-2{
-			background: repeating-linear-gradient(60deg, #fb3, #fb3 15px, #58a 0, #58a 30px);
-		}
 	}
 </style>
