@@ -1,0 +1,137 @@
+<template>
+	<div class="m-tree">
+		<div class="m-tit">
+			<h2>查询的地址是{{finalArea}}</h2>
+		</div>
+		<div class="m-cont">
+			<el-form :inline="true">
+				<el-form-item>
+					<el-select v-model="provinceCode" @change="resetContry">
+						<el-option v-for="item in citys.cities" 
+							:label="item.name" 
+							:value="item.id" 
+							:key="item.id">{{item.name}}</el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item>
+					<el-select v-model="cityCode">
+						<el-option v-for="item in cities" 
+						:label="item.name" 
+						:value="item.id" 
+						:key="item.id">{{item.name}}</el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item>
+					<el-select v-model="countyCode">
+						<el-option v-for="item in county" 
+						:label="item.name" 
+						:value="item.id" 
+						:key="item.id">{{item.name}}</el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item>
+					<el-button type="primary" @click.prevent="search">查询</el-button>
+				</el-form-item>
+			</el-form>
+		</div>
+	</div>
+</template>
+<script>
+	export default {
+		props: {
+			city: {
+				type: Object
+			}
+		},
+		data() {
+			return {
+				citys: this.city,
+				finalArea: '',
+				provinceCode: '',
+				cityCode: '',
+				countyCode: ''
+			}
+		},
+		created() {
+			this.citys.cities.unshift({id: '', name: '全国'})
+		},
+		methods: {
+			resetContry() {
+				this.countyCode = ''
+			},
+			queryCity(provinceId) {
+				for (let i = 0; i < this.citys.cities.length; i++) {
+					if (!this.city.cities[i].id) {
+						continue	// 跳过id为空的时候
+					}
+					if (this.citys.cities[i].id === provinceId) {
+						return this.citys.cities[i].cities
+					}
+				}
+				return []
+			},
+			queryCounty(cityCode) {
+				for (let i = 0; i < this.cities.length; i++) {
+					if (!this.cities[i].id) {
+						continue	// 跳过id为空的时候
+					}
+					if (this.cities[i].id === cityCode) {
+						return this.cities[i].cities
+					}
+				}
+				return []
+			},
+			search() {
+				if (this.countyCode !== '') {
+					this.finalArea = this.countyCode
+				} else if (this.cityCode !== '') {
+					this.finalArea = this.cityCode
+				} else {
+					this.finalArea = this.provinceCode
+				}
+			}
+		},
+		computed: {
+			cities() {
+				let cities = this.queryCity(this.provinceCode).slice()
+				let obj = {
+					id: '',
+					name: '全省'
+				}
+				if (this.provinceCode === '') {
+					cities.unshift(obj)
+				} else {
+					if (cities[0].id !== '') {
+						cities.unshift(obj)
+					}
+				}
+				this.cityCode = cities[0].id
+				return cities
+			},
+			county() {
+				let county = this.queryCounty(this.cityCode).slice()
+				let obj = {
+					id: '',
+					name: '全市'
+				}
+				if (this.cityCode === '') {
+					county.unshift(obj)
+				} else {
+					if (county[0].id !== '') {
+						county.unshift(obj)
+					}
+				}
+				this.countyCode = county[0].id
+				return county
+			}
+		}
+	}
+</script>
+<style lang="less" scoped>
+	.m-tree{
+		margin: 0 auto;
+		.m-cont{
+			text-align: center;
+		}
+	}
+</style>
