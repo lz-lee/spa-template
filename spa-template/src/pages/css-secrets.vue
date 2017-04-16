@@ -242,5 +242,7 @@ background-size: 30px 100%;</pre>
 			background: repeating-linear-gradient(45deg, #fb3, #fb3 15px, #58a 0, #58a 30px);
 		}
 		.cont-repeat-stripes-2{
+			background: repeating-linear-gradient(60deg, #fb3, #fb3 15px, #58a 0, #58a 30px);
+		}
 	}
 </style>
