@@ -52,8 +52,7 @@
 			return {
 				cityData: [],
 				allCheck: false,
-				finalArr: [],
-				cities: this.city
+				finalArr: []
 			}
 		},
 		watch: {
@@ -77,17 +76,17 @@
 		},
 		methods: {
 			generateCityData() {
-				for (let i = 0; i < this.cities.cities.length; i++) {
-					this.cities.cities[i].show = false	// 给省级添加标识，是否查看市
-					this.cities.cities[i].checked = []	// 存放已选的市级id
-					this.cities.cities[i].selfCheck = false
-					for (let j = 0; j < this.cities.cities[i].cities.length; j++) {
-						this.cities.cities[i].cities[j].show = false	// 给市级添加标识，是否查看县
-						this.cities.cities[i].cities[j].checked = []	// 存放已选的县级id
-						this.cities.cities[i].cities[j].selfCheck = false
+				for (let i = 0; i < this.cities.length; i++) {
+					this.cities[i].show = false	// 给省级添加标识，是否查看市
+					this.cities[i].checked = []	// 存放已选的市级id
+					this.cities[i].selfCheck = false
+					for (let j = 0; j < this.cities[i].cities.length; j++) {
+						this.cities[i].cities[j].show = false	// 给市级添加标识，是否查看县
+						this.cities[i].cities[j].checked = []	// 存放已选的县级id
+						this.cities[i].cities[j].selfCheck = false
 					}
 				}
-				this.cityData = this.cities.cities
+				this.cityData = this.cities
 			},
 			toggleItem(item) {
 				item.show = !item.show
@@ -206,6 +205,14 @@
 				} else {
 					window.eventBus.$emit('getArea', [])
 				}
+			}
+		},
+		computed: {
+			cities() {
+				// props下来的如果是对象活着数组，自组建修改会改变父组件状态，需要深拷贝一次
+				let str = JSON.stringify(this.city.cities)
+				let cities = JSON.parse(str)
+				return cities
 			}
 		}
 	}
