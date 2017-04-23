@@ -13,7 +13,7 @@ Vue.use(VueTranslate)
 Vue.use(ElementUI)
 
 import filters from './libs/filters'
-import store from './store/index'
+import store from './store'
 import router from './router'
 
 import App from './App'

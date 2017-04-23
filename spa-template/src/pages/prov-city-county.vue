@@ -58,7 +58,7 @@
 			queryCity(provinceId) {
 				for (let i = 0; i < this.citys.length; i++) {
 					if (!this.citys[i].id) {
-						continue	// 跳过id为空的时候
+						continue	// 跳过id为空的时候（咩有cities）
 					}
 					if (this.citys[i].id === provinceId) {
 						return this.citys[i].cities
@@ -105,7 +105,9 @@
 				if (this.provinceCode === '') {
 					cities.unshift(obj)
 				} else {
-					if (cities[0].id !== '') {
+					if (cities.length !== 0 && cities[0].id !== '') {
+						cities.unshift(obj)
+					} else {
 						cities.unshift(obj)
 					}
 				}
@@ -121,7 +123,9 @@
 				if (this.cityCode === '') {
 					county.unshift(obj)
 				} else {
-					if (county[0].id !== '') {
+					if (county.length !== 0 && county[0].id !== '') {
+						county.unshift(obj)
+					} else {
 						county.unshift(obj)
 					}
 				}

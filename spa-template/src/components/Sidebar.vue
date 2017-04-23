@@ -4,13 +4,11 @@
       <router-link to="/"><el-menu-item index="1"><i class="el-icon-message"></i>翻译示例</el-menu-item></router-link>
       <router-link to="/test"><el-menu-item index="2"><i class="el-icon-menu"></i>表格示例</el-menu-item></router-link>
       <router-link to="/star"><el-menu-item index="3"><i class="el-icon-star-off"></i>星级评分</el-menu-item></router-link>
-      <router-link to="/tree">
-        <el-submenu index="4">
-          <template slot="title"><i class="el-icon-share"></i>省市县联动</template>
-          <router-link to="/tree/link"><el-menu-item index="4-1">树状</el-menu-item></router-link>
-          <router-link to="/tree/tab"><el-menu-item index="4-2">选项</el-menu-item></router-link>
-        </el-submenu>
-      </router-link>
+      <el-submenu index="4" @open="handleSelect" @close="handleSelect">
+        <template slot="title"><i class="el-icon-share"></i>省市县联动</template>
+        <router-link to="/tree/link"><el-menu-item index="4-1">树状</el-menu-item></router-link>
+        <router-link to="/tree/tab"><el-menu-item index="4-2">选项</el-menu-item></router-link>
+      </el-submenu>
       <router-link to="/cssSecret"><el-menu-item index="5"><i class="el-icon-star-on"></i>css揭秘</el-menu-item></router-link>
       <router-link to="/pagination"><el-menu-item index="6"><i class="el-icon-d-arrow-right
 "></i>分页组件</el-menu-item></router-link>
@@ -27,12 +25,14 @@
     },
     methods: {
       handleSelect(key, keyPath) {
-        this.defaultIndex = key
+        // this.defaultIndex = key.toString()
+        console.log(key)
         this.$store.dispatch('STORE_INDEX', key)
       }
     },
     computed: {
       defaultIndex() {
+        debugger
         return this.$store.state.Index
       }
     }
