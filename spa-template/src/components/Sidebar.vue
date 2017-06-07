@@ -32,7 +32,6 @@
     },
     computed: {
       defaultIndex() {
-        debugger
         return this.$store.state.Index
       }
     }

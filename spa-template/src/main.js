@@ -29,8 +29,9 @@ Vue.http.interceptors.push(function (request, next) {
 	})
 })
 
-// router校验
+// router校验，{meta , path }这里也是参数解构，将 to对象中的meta 和path取出
 router.beforeEach(({meta, path}, from, next) => {
+	// 对象解构，并设置默认值
 	let {auth = true} = meta
 	let isLogin = Boolean(store.state.User.username)
 	if (auth && !isLogin && path !== '/login') {

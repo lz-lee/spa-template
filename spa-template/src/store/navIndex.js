@@ -8,6 +8,7 @@ export default {
 		}
 	},
 	actions: {
+		// {commit} 为参数解构
 		[STORE_INDEX]({commit}, index) {
 			commit(STORE_INDEX, index)
 		}
