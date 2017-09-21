@@ -8,6 +8,7 @@ import treelink from '@/pages/prov-city-tree'
 import treetab from '@/pages/prov-city-county'
 import pagination from '@/pages/pagination-view'
 import csssecret from '@/pages/css-secrets'
+import upload from '@/pages/upload'
 
 import Frame from '@/components/frame'
 import Login from '@/pages/common/login'
@@ -60,6 +61,10 @@ export default new Router({
         {
           path: '/pagination',
           component: pagination
+        },
+        {
+          path: '/upload',
+          component: upload
         }
       ],
       redirect: '/hello'

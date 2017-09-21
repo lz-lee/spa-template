@@ -12,6 +12,8 @@
       <router-link to="/cssSecret"><el-menu-item index="5"><i class="el-icon-star-on"></i>css揭秘</el-menu-item></router-link>
       <router-link to="/pagination"><el-menu-item index="6"><i class="el-icon-d-arrow-right
 "></i>分页组件</el-menu-item></router-link>
+      <router-link to="/upload"><el-menu-item index="7"><i class="el-icon-d-arrow-right
+"></i>图片上传</el-menu-item></router-link>
     </el-menu>
   </div>
 </template>

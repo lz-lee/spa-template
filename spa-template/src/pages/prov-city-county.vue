@@ -52,7 +52,7 @@
 			}
 		},
 		methods: {
-			resetContry() {
+			resetContry(city) {
 				this.countyCode = ''
 			},
 			queryCity(provinceId) {
