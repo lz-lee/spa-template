@@ -33,9 +33,7 @@ export default {
 
       if (file) {
         let render = new FileReader()
-        let that = this
-        debugger
-        render.onload = function(e) {
+        render.onload = (e) => {
           // 限制尺寸
           // let image = new Image()
           // image.onload = function() {
@@ -43,7 +41,7 @@ export default {
           //   console.log(this.height)
           // }
           // image.src = e.target.result
-          that.thum = e.target.result
+          this.thum = e.target.result
         }
         render.readAsDataURL(file)
         this.$emit('setFormData', {
